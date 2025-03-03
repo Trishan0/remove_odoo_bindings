@@ -11,6 +11,7 @@
         "views/preferences_form.xml",
         "views/user_form.xml",
         ],
+    "images": ['static/description/banner.gif'],
     "assets": {
         "web.assets_backend": [
             "odoo_bindings_remove/static/src/js/user_menu_items.esm.js",
