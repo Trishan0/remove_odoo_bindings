@@ -14,10 +14,10 @@
     "images": ['static/description/banner.gif'],
     "assets": {
         "web.assets_backend": [
-            "odoo_bindings_remove/static/src/js/user_menu_items.esm.js",
-            "odoo_bindings_remove/static/src/import_action/import_action_inherit.xml",
-            "odoo_bindings_remove/static/src/import_data_content/import_data_content_inherit.xml",
-            "odoo_bindings_remove/static/src/import_data_sidepanel/import_data_sidepanel_inherit.xml",
+            "remove_odoo_bindings/static/src/js/user_menu_items.esm.js",
+            "remove_odoo_bindings/static/src/import_action/import_action_inherit.xml",
+            "remove_odoo_bindings/static/src/import_data_content/import_data_content_inherit.xml",
+            "remove_odoo_bindings/static/src/import_data_sidepanel/import_data_sidepanel_inherit.xml",
         ],
     },
     "installable": True,
