@@ -10,6 +10,8 @@
         "views/ir_ui_menu.xml",
         "views/preferences_form.xml",
         "views/user_form.xml",
+        "views/webclient_templates.xml",
+        "views/disable_odoo.xml",
         ],
     "images": ['static/description/banner.gif'],
     "assets": {
