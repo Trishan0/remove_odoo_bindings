@@ -5,12 +5,13 @@
     "author": "Trishan Fernando",
     "license": "LGPL-3",
     "category": "Tools",
-    "depends": ["base","auth_totp","mail",'mail_bot','base_import'],
+    "depends": ["base","auth_totp","mail",'mail_bot','base_import','auth_signup'],
     "data": [
         "views/ir_ui_menu.xml",
         "views/preferences_form.xml",
         "views/user_form.xml",
         "views/webclient_templates.xml",
+        "views/auth_signup_login_templates.xml"
         ],
     "images": ['static/description/banner.gif'],
     "assets": {
