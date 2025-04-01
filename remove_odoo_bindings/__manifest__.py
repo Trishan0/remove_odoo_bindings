@@ -13,7 +13,7 @@
         "views/webclient_templates.xml",
         "views/auth_signup_login_templates.xml"
         ],
-    "images": ['static/description/banner.gif'],
+    "images": ['static/description/banner.png'],
     "assets": {
         "web.assets_backend": [
             "remove_odoo_bindings/static/src/js/user_menu_items.esm.js",
