@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-inherit="base_import.ImportDataContent" t-inherit-mode="extension">
+    <t t-inherit="ImportDataContent" t-inherit-mode="extension">
         <!-- Change "Odoo Field" to "Field" -->
         <xpath expr="//thead/tr/th[2]" position="replace">
             <th scope="col" style="width: 20%;">Field</th>
