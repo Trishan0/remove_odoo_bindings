@@ -7,7 +7,6 @@
     "category": "Tools",
     "depends": ["base","auth_totp","mail",'mail_bot','base_import','auth_signup'],
     "data": [
-        'security/ir.model.access.csv',
         "views/ir_ui_menu.xml",
         "views/preferences_form.xml",
         "views/res_config_settings_views.xml"
@@ -17,12 +16,9 @@
     "assets": {
         "web.assets_backend": [
             "remove_odoo_bindings/static/src/js/user_menu_items.esm.js",
-            "remove_odoo_bindings/static/src/xml/res_config_edition_custom.xml",
             "remove_odoo_bindings/static/src/import_action/import_action_inherit.xml",
             "remove_odoo_bindings/static/src/import_data_content/import_data_content_inherit.xml",
             "remove_odoo_bindings/static/src/import_data_sidepanel/import_data_sidepanel_inherit.xml",
-            'remove_odoo_bindings/static/src/js/res_config_edition.js',
-            'remove_odoo_bindings/static/src/xml/res_config_edition_custom.xml',
         ],
     },
     "installable": True,
