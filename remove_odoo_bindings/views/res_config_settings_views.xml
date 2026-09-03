@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </setting>
-                    <setting string="Backend URL" help="Replace the /odoo path used by Odoo 19 backend navigation.">
+                    <setting string="Backend URL" help="Replace the default /odoo path used by backend navigation.">
                         <div class="content-group">
                             <div class="row mt16">
                                 <label for="white_label_backend_slug" class="col-lg-4 o_light_label"/>
@@ -72,6 +72,9 @@
                     <setting string="Vendor Store Links" help="Keep installed-app management but remove links to vendor stores.">
                         <field name="white_label_hide_app_store"/>
                     </setting>
+                    <setting string="Automated Assistant" help="Replace the vendor-branded bot display name.">
+                        <field name="white_label_assistant_name" placeholder="Assistant"/>
+                    </setting>
                     <setting string="Systray Menus"
                              help="These switches hide business features and are kept separate from cosmetic white-labeling.">
                         <div class="content-group">
@@ -87,7 +90,28 @@
                     </setting>
                 </block>
             </xpath>
+            <xpath expr="//setting[@id='partner_autocomplete']" position="attributes">
+                <attribute name="title">Match companies and complete contact data automatically.</attribute>
+            </xpath>
+            <xpath expr="//setting[field[@name='module_base_import']]" position="attributes">
+                <attribute name="help">Allow users to import data from CSV, XLS, XLSX, and ODS files.</attribute>
+            </xpath>
+            <xpath expr="//setting[button[@name='%(base.action_apikeys_admin)d']]" position="attributes">
+                <attribute name="help">API keys allow external tools to connect when multi-factor authentication is enabled.</attribute>
+            </xpath>
+            <xpath expr="//block[@id='pwa_settings']" position="replace"/>
             <xpath expr="//div[@id='about']" position="replace"/>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_mail_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.mail.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mail.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='email_servers_setting']" position="attributes">
+                <attribute name="title">Use your own incoming and outgoing email servers for a fully branded mail domain.</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

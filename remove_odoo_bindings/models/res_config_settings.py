@@ -88,6 +88,12 @@ class ResConfigSettings(models.TransientModel):
         default=True,
         help="Hide the Third-Party Apps and Theme Store links while keeping installed-app management.",
     )
+    white_label_assistant_name = fields.Char(
+        string="Assistant Name",
+        config_parameter="remove_odoo_bindings.assistant_name",
+        default="Assistant",
+        help="Display name of the built-in automated assistant.",
+    )
 
     @api.constrains("white_label_backend_slug")
     def _check_white_label_backend_slug(self):
@@ -108,5 +114,8 @@ class ResConfigSettings(models.TransientModel):
         result = super().set_values()
         brand_name = self.company_id.white_label_brand_name or self.company_id.name
         self.env["ir.config_parameter"].sudo().set_param("web.web_app_name", brand_name)
+        assistant = self.env.ref("base.partner_root", raise_if_not_found=False)
+        if assistant:
+            assistant.sudo().name = self.white_label_assistant_name or "Assistant"
         self.env.registry.clear_cache()
         return result

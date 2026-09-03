@@ -17,6 +17,7 @@ import { registry } from "@web/core/registry";
 import { patch } from "@web/core/utils/patch";
 import { WebClient } from "@web/webclient/webclient";
 import { session } from "@web/session";
+import { DocumentationLink } from "@web/views/widgets/documentation_link/documentation_link";
 
 // Import the defining modules before removing their registry entries.
 import "@web/webclient/user_menu/user_menu_items";
@@ -88,6 +89,31 @@ patch(titleService, {
         return service;
     },
 });
+
+if (branding.documentation_url) {
+    patch(DocumentationLink.prototype, {
+        get url() {
+            const originalUrl = super.url;
+            let parsedUrl;
+            try {
+                parsedUrl = new URL(originalUrl, browser.location.origin);
+            } catch {
+                return originalUrl;
+            }
+            if (
+                parsedUrl.hostname !== "odoo.com" &&
+                !parsedUrl.hostname.endsWith(".odoo.com")
+            ) {
+                return originalUrl;
+            }
+            const relativePath = parsedUrl.pathname
+                .replace(/^\/documentation\/(?:latest|[^/]+)\//, "")
+                .replace(/^\/+/, "");
+            const documentationRoot = branding.documentation_url.replace(/\/*$/, "/");
+            return new URL(relativePath, documentationRoot).href;
+        },
+    });
+}
 
 if (backendSlug !== "odoo") {
     patch(router, {

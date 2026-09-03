@@ -2,6 +2,10 @@
     --white-label-primary: #2563eb;
 }
 
+.o_doc_link[href*="odoo.com"] {
+    display: none !important;
+}
+
 .o_web_client {
     .o_main_navbar {
         background-color: var(--white-label-primary);

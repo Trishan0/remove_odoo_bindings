@@ -34,7 +34,7 @@ class ResCompany(models.Model):
         help="Square PNG or ICO image used for browser tabs and the installed web app.",
     )
     white_label_primary_color = fields.Char(
-        string="Primary Color",
+        string="Interface Primary Color",
         default="#2563EB",
         help="Six-digit hexadecimal color used for the backend navigation and primary actions.",
     )

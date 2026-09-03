@@ -1,3 +1,4 @@
+import json
 from urllib.parse import urlsplit, urlunsplit
 
 from odoo import http
@@ -37,6 +38,18 @@ class WhiteLabelHome(Home):
 
 
 class WhiteLabelManifest(WebManifest):
+    def _get_scoped_app_icons(self, app_id):
+        icons = super()._get_scoped_app_icons(app_id)
+        if any("odoo-icon" in icon.get("src", "") for icon in icons):
+            return [
+                {
+                    "src": "/remove_odoo_bindings/favicon",
+                    "sizes": "any",
+                    "type": "image/png",
+                }
+            ]
+        return icons
+
     def _get_webmanifest(self):
         manifest = super()._get_webmanifest()
         company = request.env.company.sudo()
@@ -74,6 +87,21 @@ class WhiteLabelManifest(WebManifest):
         body = response.get_data(as_text=True).replace('"/odoo', f'"/{slug}')
         response.set_data(body)
         response.headers["Service-Worker-Allowed"] = "/"
+        return response
+
+    @http.route()
+    def scoped_app_manifest(self, app_id, path, app_name=""):
+        response = super().scoped_app_manifest(app_id, path, app_name=app_name)
+        manifest = json.loads(response.get_data(as_text=True))
+        values = request.env.company.sudo()._white_label_values()
+        manifest.update(
+            {
+                "background_color": values["primary_color"],
+                "theme_color": values["primary_color"],
+                "homepage_url": values["website_url"],
+            }
+        )
+        response.set_data(json.dumps(manifest))
         return response
 
 
