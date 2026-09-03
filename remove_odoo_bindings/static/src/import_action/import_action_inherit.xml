@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-inherit="ImportAction" t-inherit-mode="extension">
+    <t t-inherit="base_import.ImportAction" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('o_nocontent_help')]/div[hasclass('mt16')]" position="replace"/>
         <xpath expr="//div[hasclass('o_nocontent_help')]/a[contains(@href, 'odoo.com')]" position="replace"/>
     </t>
