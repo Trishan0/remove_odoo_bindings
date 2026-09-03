@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-inherit="ImportAction" t-inherit-mode="extension">
-        <!-- Remove Need Help section -->
+        <!-- Odoo 19: remove the vendor documentation component from the empty state. -->
         <xpath expr="//div[contains(@class, 'mt16') and contains(@class, 'mb4')]" position="replace"/>
     </t>
 </templates>

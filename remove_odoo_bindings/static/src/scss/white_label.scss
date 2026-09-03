@@ -1,0 +1,41 @@
+:root {
+    --white-label-primary: #2563eb;
+}
+
+.o_web_client {
+    .o_main_navbar {
+        background-color: var(--white-label-primary);
+        border-color: var(--white-label-primary);
+    }
+
+    .btn-primary {
+        --btn-bg: var(--white-label-primary);
+        --btn-border-color: var(--white-label-primary);
+        --btn-hover-bg: color-mix(in srgb, var(--white-label-primary) 86%, black);
+        --btn-hover-border-color: color-mix(in srgb, var(--white-label-primary) 80%, black);
+        --btn-active-bg: color-mix(in srgb, var(--white-label-primary) 76%, black);
+        --btn-active-border-color: color-mix(in srgb, var(--white-label-primary) 72%, black);
+    }
+
+    .text-primary {
+        color: var(--white-label-primary) !important;
+    }
+
+    .border-primary {
+        border-color: var(--white-label-primary) !important;
+    }
+}
+
+.oe_login_form,
+.oe_signup_form,
+.oe_reset_password_form,
+.o_database_list {
+    .btn-primary {
+        background-color: var(--white-label-primary);
+        border-color: var(--white-label-primary);
+    }
+
+    a:not(.btn) {
+        color: var(--white-label-primary);
+    }
+}

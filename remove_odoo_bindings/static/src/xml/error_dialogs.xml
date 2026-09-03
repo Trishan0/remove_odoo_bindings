@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web.SessionExpiredDialog" t-inherit-mode="extension">
+        <xpath expr="//Dialog" position="attributes">
+            <attribute name="title">'Session Expired'</attribute>
+            <attribute name="title.translate"/>
+        </xpath>
+        <xpath expr="//p[hasclass('text-prewrap')]" position="replace">
+            <p class="text-prewrap">Your session expired. The current page is about to be refreshed.</p>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.InstallScopedApp" t-inherit-mode="extension">
+        <xpath expr="//a[contains(@href, 'odoo.com')]" position="replace">
+            <a t-if="state.manifest.homepage_url" class="text-primary text-decoration-none"
+               t-att-href="state.manifest.homepage_url" target="_blank" rel="noopener noreferrer"
+               t-esc="state.manifest.name"/>
+            <span t-else="" class="text-primary" t-esc="state.manifest.name"/>
+        </xpath>
+    </t>
+</templates>
