@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mail_notification_layout_white_label" inherit_id="mail.mail_notification_layout"
+              name="White Label Mail Notification Footer">
+        <xpath expr="//div[@t-if='show_footer'][a[contains(@href, 'odoo.com')]]" position="replace">
+            <div t-if="show_footer" style="color: #555555; font-size:11px;">
+                <t t-if="company.white_label_email_footer">
+                    <a t-if="company.white_label_website_url or company.website"
+                       t-att-href="company.white_label_website_url or company.website"
+                       target="_blank" rel="noopener noreferrer"
+                       t-att-style="'color: ' + (company.white_label_primary_color or company.email_secondary_color or '#2563EB') + ';'"
+                       t-out="company.white_label_email_footer"/>
+                    <span t-else="" t-out="company.white_label_email_footer"/>
+                </t>
+                <span t-if="show_unfollow" id="mail_unfollow">
+                    <t t-if="company.white_label_email_footer"> | </t>
+                    <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                </span>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="mail_notification_light_white_label" inherit_id="mail.mail_notification_light"
+              name="White Label Light Mail Footer">
+        <xpath expr="//tr/td[a[contains(@href, 'odoo.com')]]" position="replace">
+            <td align="center" style="min-width: 590px;">
+                <t t-if="company.white_label_email_footer">
+                    <a t-if="company.white_label_website_url or company.website"
+                       t-att-href="company.white_label_website_url or company.website"
+                       target="_blank" rel="noopener noreferrer"
+                       t-att-style="'color: ' + (company.white_label_primary_color or company.email_secondary_color or '#2563EB') + ';'"
+                       t-out="company.white_label_email_footer"/>
+                    <span t-else="" t-out="company.white_label_email_footer"/>
+                </t>
+                <span t-if="show_unfollow" id="mail_unfollow">
+                    <t t-if="company.white_label_email_footer"> | </t>
+                    <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                </span>
+            </td>
+        </xpath>
+    </template>
+</odoo>

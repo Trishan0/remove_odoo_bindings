@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-inherit="ImportDataSidepanel" t-inherit-mode="extension">
-        <!-- Remove Help section -->
+        <!-- Odoo 19: remove vendor FAQ links while retaining import templates elsewhere. -->
         <xpath expr="//div[h4[text()='Help'] and contains(@class,'border-top')]" position="replace"/>
     </t>
 </templates>

@@ -1,15 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="login_layout_hide_powered_by_and_manage_db" inherit_id="web.login_layout" name="Login Layout">
-        <xpath expr="//div[@class='container py-5']" position="before">
-            <t t-set="disable_footer" t-value="1"/>
+    <template id="web_layout_white_label" inherit_id="web.layout" name="White Label Web Layout">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title or (request.db and (request.env.company.sudo().white_label_brand_name or request.env.company.name)) or 'Business Suite'"/>
         </xpath>
-        <xpath expr="//div[@class='card-body']//div[last()]" position="replace">
-            <div class="text-center small mt-4 pt-3 login--footer" t-if="not disable_footer">
+        <xpath expr="//link[@rel='shortcut icon']" position="attributes">
+            <attribute name="t-att-href">x_icon or '/remove_odoo_bindings/favicon'</attribute>
+        </xpath>
+        <xpath expr="//head/meta[last()]" position="after">
+            <style t-if="request.db">
+                :root {
+                    --white-label-primary: <t t-out="request.env.company.sudo().white_label_primary_color or '#2563EB'"/>;
+                }
+            </style>
+        </xpath>
+    </template>
+
+    <template id="brand_promotion_message_white_label" inherit_id="web.brand_promotion_message"
+              name="White Label Brand Promotion">
+        <xpath expr="//t[contains(@t-out, 'final_message')]" position="replace">
+            <t t-set="white_label_company" t-value="request.env.company.sudo()"/>
+            <t t-set="white_label_name" t-value="white_label_company.white_label_brand_name or white_label_company.name"/>
+            <a t-if="white_label_company.white_label_website_url or white_label_company.website"
+               t-att-href="white_label_company.white_label_website_url or white_label_company.website"
+               target="_blank" rel="noopener noreferrer" t-esc="white_label_name"/>
+            <span t-else="" t-esc="white_label_name"/>
+            <t t-if="_message"> - <t t-out="_message"/></t>
+        </xpath>
+    </template>
+
+    <template id="login_layout_white_label" inherit_id="web.login_layout" name="White Label Login Layout">
+        <xpath expr="//div[hasclass('card-body')]/div[last()]" position="replace">
+            <t t-set="white_label_company" t-value="request.env.company.sudo()"/>
+            <div class="text-center small mt-4 pt-3 border-top"
+                 t-if="not disable_footer and (not disable_database_manager or white_label_company.white_label_login_footer)">
                 <t t-if="not disable_database_manager">
-                    <a class="pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                    <a class="border-end pe-2 me-1" href="/web/database/manager">Manage Databases</a>
                 </t>
+                <a t-if="white_label_company.white_label_login_footer and (white_label_company.white_label_website_url or white_label_company.website)"
+                   t-att-href="white_label_company.white_label_website_url or white_label_company.website"
+                   target="_blank" rel="noopener noreferrer"
+                   t-esc="white_label_company.white_label_login_footer"/>
+                <span t-elif="white_label_company.white_label_login_footer"
+                      t-esc="white_label_company.white_label_login_footer"/>
             </div>
+        </xpath>
+    </template>
+
+    <template id="webclient_bootstrap_white_label" inherit_id="web.webclient_bootstrap"
+              name="White Label Webclient Metadata">
+        <xpath expr="//meta[@name='theme-color']" position="attributes">
+            <attribute name="t-att-content">request.env.company.sudo().white_label_primary_color or '#2563EB'</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="href">/remove_odoo_bindings/favicon</attribute>
+        </xpath>
+    </template>
+
+    <template id="webclient_offline_white_label" inherit_id="web.webclient_offline"
+              name="White Label Offline Page">
+        <xpath expr="//div[hasclass('card')]/img" position="replace">
+            <img src="/remove_odoo_bindings/favicon" alt="Application icon"/>
+        </xpath>
+        <xpath expr="//div[hasclass('card')]/p" position="replace">
+            <p>Check your network connection and come back here. The application will load as soon as you are back online.</p>
+        </xpath>
+    </template>
+
+    <template id="report_layout_white_label" inherit_id="web.report_layout" name="White Label Report Title">
+        <xpath expr="//title/t" position="replace">
+            <t t-esc="title or ((env.company.white_label_brand_name or env.company.name) + ' Report')"/>
+        </xpath>
+    </template>
+
+    <template id="report_preview_layout_white_label" inherit_id="web.report_preview_layout"
+              name="White Label Report Preview Title">
+        <xpath expr="//title/t" position="replace">
+            <t t-esc="title or ((env.company.white_label_brand_name or env.company.name) + ' Report')"/>
         </xpath>
     </template>
 </odoo>
