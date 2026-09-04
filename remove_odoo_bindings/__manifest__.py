@@ -1,8 +1,8 @@
 {
-    "name": "Complete White Label Branding",
-    "summary": "Replace visible vendor branding and configure a branded backend URL",
+    "name": "Remove Odoo Branding",
+    "summary": "Remove vendor branding and configure a branded backend URL",
     "description": """
-Complete white-label branding for Odoo 17.0.
+Remove Odoo branding for Odoo 17.0.
 
 Configure the product name, browser/PWA identity, colors, favicon, support
 links, login and email footers, backend URL slug, app-store links, and optional

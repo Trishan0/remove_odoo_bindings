@@ -1,4 +1,4 @@
-# Complete White Label Branding for Odoo 17
+# Remove Odoo Branding for Odoo 17
 
 This addon replaces visible vendor branding across the Odoo 17 backend, login,
 emails, PWA metadata, error dialogs, browser titles, support links, import
@@ -18,8 +18,8 @@ slug, such as `/erp` instead of `/web`.
 
 ## Configuration
 
-1. Install **Complete White Label Branding**.
-2. Open **Settings > General Settings > White Label Branding**.
+1. Install **Remove Odoo Branding**.
+2. Open **Settings > General Settings > Remove Odoo Branding**.
 3. Enter the product identity, links, color, favicon, assistant name, and backend slug.
 4. Save, then reload the browser at the new URL.
 
