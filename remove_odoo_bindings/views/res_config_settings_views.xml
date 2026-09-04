@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <block title="White Label Branding" name="white_label_branding">
+                    <setting string="Product Identity" company_dependent="1"
+                             help="Replace the product name, vendor favicon, and primary interface color.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="white_label_brand_name" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_brand_name" class="oe_inline" placeholder="Business Suite"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_favicon" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_favicon" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_primary_color" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_primary_color" widget="color" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Branded Links" company_dependent="1"
+                             help="Use your own website, helpdesk, and documentation destinations.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="white_label_website_url" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_website_url" class="oe_inline" placeholder="https://example.com"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_support_url" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_support_url" class="oe_inline" placeholder="https://support.example.com"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_documentation_url" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_documentation_url" class="oe_inline" placeholder="https://docs.example.com"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_show_help" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_show_help"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Backend URL" help="Replace the default /web backend entry URL.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="white_label_backend_slug" class="col-lg-4 o_light_label"/>
+                                <div class="col-lg-8">
+                                    <span class="me-1">/</span><field name="white_label_backend_slug" class="oe_inline" placeholder="erp"/>
+                                    <div class="text-muted">Save, then reload at the new URL. Use a single-database or db-filtered deployment.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Branded Footers" company_dependent="1"
+                             help="Optional text for authentication pages and notification emails.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="white_label_login_footer" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_login_footer" class="oe_inline"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_email_footer" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_email_footer" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Vendor Store Links" help="Keep installed-app management but remove links to vendor stores.">
+                        <field name="white_label_hide_app_store"/>
+                    </setting>
+                    <setting string="Automated Assistant" help="Replace the vendor-branded bot display name.">
+                        <field name="white_label_assistant_name" placeholder="Assistant"/>
+                    </setting>
+                    <setting string="Systray Menus"
+                             help="These switches hide business features and are separate from cosmetic white-labeling.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="white_label_hide_messaging" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_hide_messaging"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="white_label_hide_activities" class="col-lg-4 o_light_label"/>
+                                <field name="white_label_hide_activities"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+            <xpath expr="//setting[@id='partner_autocomplete']" position="attributes">
+                <attribute name="title">Match companies and complete contact data automatically.</attribute>
+            </xpath>
+            <xpath expr="//setting[field[@name='module_base_import']]" position="attributes">
+                <attribute name="help">Allow users to import data from CSV, XLS, XLSX, and ODS files.</attribute>
+            </xpath>
+            <xpath expr="//setting[button[@name='%(base.action_apikeys_admin)d']]" position="attributes">
+                <attribute name="help">API keys allow external tools to connect when multi-factor authentication is enabled.</attribute>
+            </xpath>
+            <xpath expr="//block[@id='pwa_settings']" position="replace"/>
+            <xpath expr="//div[@id='about']" position="replace"/>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_mail_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.mail.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mail.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='email_servers_setting']" position="attributes">
+                <attribute name="title">Use your own incoming and outgoing email servers for a fully branded mail domain.</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
